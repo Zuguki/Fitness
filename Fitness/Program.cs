@@ -1,4 +1,6 @@
-﻿namespace Fitness
+﻿using System;
+
+namespace Fitness
 {
     internal static class Program
     {

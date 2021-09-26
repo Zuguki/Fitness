@@ -1,0 +1,6 @@
+/home/flash/RiderProjects/Fitness/Fitness.BL/bin/Debug/Fitness.BL.dll
+/home/flash/RiderProjects/Fitness/Fitness.BL/bin/Debug/Fitness.BL.pdb
+/home/flash/RiderProjects/Fitness/Fitness.BL/obj/Debug/Fitness.BL.csprojAssemblyReference.cache
+/home/flash/RiderProjects/Fitness/Fitness.BL/obj/Debug/Fitness.BL.csproj.CoreCompileInputs.cache
+/home/flash/RiderProjects/Fitness/Fitness.BL/obj/Debug/Fitness.BL.dll
+/home/flash/RiderProjects/Fitness/Fitness.BL/obj/Debug/Fitness.BL.pdb
