@@ -1,5 +1,7 @@
 using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Runtime.Serialization.Formatters.Binary;
 using Fitness.BL.Models;
 
@@ -7,21 +9,33 @@ namespace Fitness.BL.Controllers
 {
     public class UserController
     {
-        public User User { get; }
+        public List<User> Users { get; }
+        public User CurrentUser { get; private set; }
+        public bool IsNewUser { get; } = false;
 
-        public UserController(string name, Gender gender, DateTime birthDay, double weight, double height)
+        public UserController(string name)
         {
-            User = new User(name, gender, birthDay, weight, height);
+            Users = GetUsersData();
+            CurrentUser = Users.SingleOrDefault(u => u.Name == name);
+            IsNewUser = (CurrentUser == null);
+        }
+
+        public void SetNewUserData(string name, Gender gender, DateTime birthDate, double weight, double height)
+        {
+            CurrentUser = new User(name, gender, birthDate, weight, height);
+            Users.Add(CurrentUser);
+            Save();
         }
         
-        public UserController()
+        private List<User> GetUsersData()
         {
             var formatter = new BinaryFormatter();
             using (var fs = new FileStream("users.dat", FileMode.OpenOrCreate))
             {
-                User = formatter.Deserialize(fs) as User;
+                if (formatter.Deserialize(fs) is List<User> users)
+                    return users;
+                return new List<User>();
             }
-            // TODO: Что делать если пользователя не прочитали?
         }
         
         public void Save()
@@ -29,7 +43,7 @@ namespace Fitness.BL.Controllers
             var formatter = new BinaryFormatter();
             using (var fs = new FileStream("users.dat", FileMode.OpenOrCreate))
             {
-                formatter.Serialize(fs, User);
+                formatter.Serialize(fs, Users);
             }
 
             Console.WriteLine("Users Data was saved");

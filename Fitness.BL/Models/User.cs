@@ -34,6 +34,11 @@ namespace Fitness.BL.Models
             Height = height;
         }
 
+        public int GetAge()
+        {
+            return DateTime.Now.Year - BirthDay.Year;
+        }
+
         public override string ToString()
         {
             return $"{Name}";
