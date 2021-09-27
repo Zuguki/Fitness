@@ -3,6 +3,7 @@ using System.IO;
 
 namespace Fitness.BL.Models
 {
+    [Serializable]
     public class User
     {
         public string Name { get; }
